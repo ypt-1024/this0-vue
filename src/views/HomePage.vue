@@ -28,8 +28,42 @@
 
           <!-- 右侧搜索键 -->
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-sousuo"></use>
+            <use xlink:href="#icon-sousuo1"></use>
           </svg>
+        </n-flex>
+      </div>
+
+      <!-- 顶部消息栏 -->
+      <div class="topbar-message container">
+        <n-flex justify="space-between" align="center">
+
+          <!-- 左侧即刻 -->
+            <span>
+             即刻
+            </span>
+
+          <!-- 消息内容 -->
+          <span>
+            This0-开源Vitepress主题
+          </span>
+
+          <!-- 右侧展开图标 -->
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-zhankai-jingguo"></use>
+          </svg>
+        </n-flex>
+      </div>
+
+      <!-- 顶部Banner -->
+      <div class="topbar-banner container">
+        <br>
+        <n-flex justify="start" align="end">
+
+          <!-- 左侧站点信息 -->
+            <h1>This0</h1>
+        </n-flex>
+        <n-flex justify="start" align="stretch">
+          <h1>这是站点描述</h1>
         </n-flex>
       </div>
     </div>
