@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <router-view></router-view>
-  </div>
+  <n-button>naive-ui</n-button>
 </template>
 
 <script>
