@@ -5,7 +5,6 @@ import naive from 'naive-ui'
 import {router} from './common/router'
 import {createPinia} from "pinia";
 import axios from 'axios'
-
 // 服务端地址
 axios.defaults.baseURL = "http://localhost:8080"
 
