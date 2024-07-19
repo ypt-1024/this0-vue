@@ -84,9 +84,7 @@ h1 {
     background-image: url('./assets/images/default-cover.jpg');
     height: 160px;
 }
-.article-other{
-    background-color: #F1E5D9;
-}
+
 .article-title {
     height: 30px;
     padding-top: 60px;
@@ -106,7 +104,6 @@ h1 {
     height: 30px;
     /*background-color: beige;*/
 }
-
 
 .main-page {
     width: 905px;
@@ -149,11 +146,12 @@ h1 {
 
 .count-article {
     width: 86px;
+    border: #D3C2A8 1px solid;
     /*margin-top: 0px;*/
     border-radius: 10px;
     font-weight: bold;
     background-color:  #F7F7F5;
-    padding: 10px;
+    padding: 9px;
 }
 
 .main-article-tag {
@@ -171,7 +169,7 @@ h1 {
 
 .main-site-count {
     margin-top: 20px;
-    height: 90px;
+    height: 98px;
     width: 205px;
     /*padding: 10px;*/
     background-color: #F7F7F5;

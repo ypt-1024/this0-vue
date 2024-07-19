@@ -109,14 +109,14 @@
                 </n-flex>
               </div>
 
-              <!-- 2.文章摘要 -->
+              <!-- 文章摘要 -->
               <div class="article-abstract">
                 Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web
                 Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC
                 模块。
               </div>
 
-              <!-- 3.文章发表时间 -->
+              <!-- 文章发表时间 -->
               <div class="article-publish">
                 发布于 2023-06-26
               </div>
@@ -452,69 +452,100 @@
           <!-- 文章标签 -->
           <div class="main-article-tag">
             <n-flex justify="center">
-              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
                 <n-badge :value="520" :offset="[6, -8]">
                   Java
                 </n-badge>
               </div>
-              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
                 <n-badge :value="520" :offset="[6, -8]">
-                  Godot
+                  Java
                 </n-badge>
               </div>
-              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
                 <n-badge :value="520" :offset="[6, -8]">
-                  MVC
+                  Java
                 </n-badge>
               </div>
-              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
                 <n-badge :value="520" :offset="[6, -8]">
-                  SpringMVC
+                  Java
                 </n-badge>
               </div>
-              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
                 <n-badge :value="520" :offset="[6, -8]">
-                  SpringMVC
+                  Java
                 </n-badge>
               </div>
-              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
                 <n-badge :value="520" :offset="[6, -8]">
-                  SpringMVC
+                  Java
                 </n-badge>
               </div>
-              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
                 <n-badge :value="520" :offset="[6, -8]">
-                  SpringMVC
+                  Java
                 </n-badge>
               </div>
-              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
                 <n-badge :value="520" :offset="[6, -8]">
-                  SpringMVC
+                  Java
                 </n-badge>
               </div>
-              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
                 <n-badge :value="520" :offset="[6, -8]">
-                  SpringMVC
+                  Java
                 </n-badge>
               </div>
-              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
                 <n-badge :value="520" :offset="[6, -8]">
-                  SpringMVC
+                  Java
                 </n-badge>
               </div>
-              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
                 <n-badge :value="520" :offset="[6, -8]">
-                  SpringMVC
+                  Java
                 </n-badge>
               </div>
-              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
                 <n-badge :value="520" :offset="[6, -8]">
-                  SpringMVC
+                  Java
                 </n-badge>
               </div>
-              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
                 <n-badge :value="520" :offset="[6, -8]">
-                  SpringMVC
+                  Java
+                </n-badge>
+              </div>
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  Java
+                </n-badge>
+              </div>
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  Java
+                </n-badge>
+              </div>
+              <div
+                  style="background-color: #F7F7F5; border: #D3C2A8 1px solid; padding: 5px;border-radius: 10px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  Java
                 </n-badge>
               </div>
             </n-flex>
