@@ -35,7 +35,7 @@
 
       <!-- 顶部消息栏 -->
       <div class="topbar-message container">
-        <n-flex justify="space-between">
+        <n-flex justify="space-between" align="center">
 
           <!-- 左侧即刻 -->
           <span>
@@ -96,15 +96,17 @@
 
           <!-- 内容区文章列表——单篇文章 -->
           <n-flex justify="start">
+
             <div class="main-article">
 
               <!-- 图片部分 -->
               <div class="articlebg">
-              </div>
-
-              <!-- 1.文章标题 -->
-              <div class="article-title">
-                【spring MVC】
+                <!-- 1.文章标题 -->
+                <n-flex justify="center">
+                  <div class="article-title">
+                    【spring MVC】
+                  </div>
+                </n-flex>
               </div>
 
               <!-- 2.文章摘要 -->
@@ -123,34 +125,12 @@
 
               <!-- 图片部分 -->
               <div class="articlebg">
-              </div>
-
-              <!-- 1.文章标题 -->
-              <div class="article-title">
-                【spring MVC】
-              </div>
-
-              <!-- 2.文章摘要 -->
-              <div class="article-abstract">
-                Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web
-                Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC
-                模块。
-              </div>
-
-              <!-- 3.文章发表时间 -->
-              <div class="article-publish">
-                发布于 2023-06-26
-              </div>
-            </div>
-            <div class="main-article">
-
-              <!-- 图片部分 -->
-              <div class="articlebg">
-              </div>
-
-              <!-- 1.文章标题 -->
-              <div class="article-title">
-                【spring MVC】
+                <!-- 1.文章标题 -->
+                <n-flex justify="center">
+                  <div class="article-title">
+                    【spring MVC】
+                  </div>
+                </n-flex>
               </div>
 
               <!-- 2.文章摘要 -->
@@ -169,34 +149,12 @@
 
               <!-- 图片部分 -->
               <div class="articlebg">
-              </div>
-
-              <!-- 1.文章标题 -->
-              <div class="article-title">
-                【spring MVC】
-              </div>
-
-              <!-- 2.文章摘要 -->
-              <div class="article-abstract">
-                Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web
-                Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC
-                模块。
-              </div>
-
-              <!-- 3.文章发表时间 -->
-              <div class="article-publish">
-                发布于 2023-06-26
-              </div>
-            </div>
-            <div class="main-article">
-
-              <!-- 图片部分 -->
-              <div class="articlebg">
-              </div>
-
-              <!-- 1.文章标题 -->
-              <div class="article-title">
-                【spring MVC】
+                <!-- 1.文章标题 -->
+                <n-flex justify="center">
+                  <div class="article-title">
+                    【spring MVC】
+                  </div>
+                </n-flex>
               </div>
 
               <!-- 2.文章摘要 -->
@@ -215,34 +173,12 @@
 
               <!-- 图片部分 -->
               <div class="articlebg">
-              </div>
-
-              <!-- 1.文章标题 -->
-              <div class="article-title">
-                【spring MVC】
-              </div>
-
-              <!-- 2.文章摘要 -->
-              <div class="article-abstract">
-                Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web
-                Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC
-                模块。
-              </div>
-
-              <!-- 3.文章发表时间 -->
-              <div class="article-publish">
-                发布于 2023-06-26
-              </div>
-            </div>
-            <div class="main-article">
-
-              <!-- 图片部分 -->
-              <div class="articlebg">
-              </div>
-
-              <!-- 1.文章标题 -->
-              <div class="article-title">
-                【spring MVC】
+                <!-- 1.文章标题 -->
+                <n-flex justify="center">
+                  <div class="article-title">
+                    【spring MVC】
+                  </div>
+                </n-flex>
               </div>
 
               <!-- 2.文章摘要 -->
@@ -261,11 +197,12 @@
 
               <!-- 图片部分 -->
               <div class="articlebg">
-              </div>
-
-              <!-- 1.文章标题 -->
-              <div class="article-title">
-                【spring MVC】
+                <!-- 1.文章标题 -->
+                <n-flex justify="center">
+                  <div class="article-title">
+                    【spring MVC】
+                  </div>
+                </n-flex>
               </div>
 
               <!-- 2.文章摘要 -->
@@ -284,11 +221,12 @@
 
               <!-- 图片部分 -->
               <div class="articlebg">
-              </div>
-
-              <!-- 1.文章标题 -->
-              <div class="article-title">
-                【spring MVC】
+                <!-- 1.文章标题 -->
+                <n-flex justify="center">
+                  <div class="article-title">
+                    【spring MVC】
+                  </div>
+                </n-flex>
               </div>
 
               <!-- 2.文章摘要 -->
@@ -303,12 +241,68 @@
                 发布于 2023-06-26
               </div>
             </div>
+            <div class="main-article">
+
+              <!-- 图片部分 -->
+              <div class="articlebg">
+                <!-- 1.文章标题 -->
+                <n-flex justify="center">
+                  <div class="article-title">
+                    【spring MVC】
+                  </div>
+                </n-flex>
+              </div>
+
+              <!-- 2.文章摘要 -->
+              <div class="article-abstract">
+                Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web
+                Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC
+                模块。
+              </div>
+
+              <!-- 3.文章发表时间 -->
+              <div class="article-publish">
+                发布于 2023-06-26
+              </div>
+            </div>
+            <div class="main-article">
+
+              <!-- 图片部分 -->
+              <div class="articlebg">
+                <!-- 1.文章标题 -->
+                <n-flex justify="center">
+                  <div class="article-title">
+                    【spring MVC】
+                  </div>
+                </n-flex>
+              </div>
+
+              <!-- 2.文章摘要 -->
+              <div class="article-abstract">
+                Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web
+                Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC
+                模块。
+              </div>
+
+              <!-- 3.文章发表时间 -->
+              <div class="article-publish">
+                发布于 2023-06-26
+              </div>
+            </div>
+
           </n-flex>
 
           <!-- 分页 -->
           <div class="main-page">
             <n-flex justify="center">
-              <n-pagination v-model:page="page" :page-count="100"/>
+              <n-pagination v-model:page="page" size="large" :page-count="100">
+                <template #prev>
+                  上一页
+                </template>
+                <template #next>
+                  下一页
+                </template>
+              </n-pagination>
             </n-flex>
           </div>
         </div>
@@ -564,6 +558,84 @@
             </n-flex>
           </div>
 
+        </div>
+      </n-flex>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="container footer">
+      <n-flex justify="space-between">
+
+        <!-- 页脚导航 -->
+        <div class="footer-group">
+          <h2>主题</h2>
+          <div>导航</div>
+          <div>服务</div>
+          <div>协议</div>
+          <div>友链</div>
+        </div>
+        <div class="footer-group">
+          <h2>导航</h2>
+          <div>导航</div>
+          <div>服务</div>
+          <div>协议</div>
+          <div>友链</div>
+        </div>
+        <div class="footer-group">
+          <h2>服务</h2>
+          <div>主题</div>
+          <div>导航</div>
+          <div>协议</div>
+          <div>友链</div>
+        </div>
+        <div class="footer-group">
+          <h2>协议</h2>
+          <div>主题</div>
+          <div>导航</div>
+          <div>服务</div>
+          <div>友链</div>
+        </div>
+        <div class="footer-group">
+          <h2>友链</h2>
+          <div>主题</div>
+          <div>导航</div>
+          <div>服务</div>
+          <div>协议</div>
+        </div>
+      </n-flex>
+
+      <!-- 品牌图标 -->
+      <n-flex justify="center">
+        <div class="shields">
+          <a target="_blank" href="https://this0.com/" title="主题采用This0">
+            <img src="/src/assets/images/icon/Theme-This0.svg" alt="">
+          </a>
+        </div>
+        <div class="shields">
+          <a target="_blank" href="https://shields.io/" title="框架采用vitepress"> <img
+              src="/src/assets/images/icon/Frame-Vitepress.svg" alt="">
+          </a>
+        </div>
+        <div class="shields">
+          <img src="/src/assets/images/icon/Copyright-BY--NC--SA_4.0.svg" alt="">
+        </div>
+        <div class="shields">
+          <a target="_blank" href="https://github.com/" title="使用github托管代码">
+            <img src="/src/assets/images/icon/Source-Github.svg" alt="">
+          </a>
+        </div>
+        <div class="shields">
+          <a target="_blank" href="https://shields.io/" title="徽标使用shields制作"> <img
+              src="/src/assets/images/icon/Icon-Shields.svg" alt=""></a>
+        </div>
+      </n-flex>
+
+      <!-- 备案号 -->
+      <n-flex justify="center">
+        <div class="shields">
+          <a target="_blank" href="https://this0.com/" title="主题采用This0">
+            <img src="/src/assets/images/icon/蜀ICP备-2023013130号.svg" alt="">
+          </a>
         </div>
       </n-flex>
     </div>
