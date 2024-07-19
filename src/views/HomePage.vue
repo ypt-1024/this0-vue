@@ -6,11 +6,11 @@
 
       <!-- 顶部导航 -->
       <div class="topbar-nav container">
-        <n-flex justify="space-between" align="center">
+        <n-flex justify="space-between">
 
           <!-- 左侧Home键 -->
           <RouterLink to="/">
-            <svg class="icon" aria-hidden="true">
+            <svg class="icon">
               <use xlink:href="#icon-home"></use>
             </svg>
           </RouterLink>
@@ -27,7 +27,7 @@
           </div>
 
           <!-- 右侧搜索键 -->
-          <svg class="icon" aria-hidden="true">
+          <svg class="icon">
             <use xlink:href="#icon-sousuo1"></use>
           </svg>
         </n-flex>
@@ -35,7 +35,7 @@
 
       <!-- 顶部消息栏 -->
       <div class="topbar-message container">
-        <n-flex justify="space-between" align="center">
+        <n-flex justify="space-between">
 
           <!-- 左侧即刻 -->
           <span>
@@ -48,7 +48,7 @@
           </span>
 
           <!-- 右侧展开图标 -->
-          <svg class="icon" aria-hidden="true">
+          <svg class="icon">
             <use xlink:href="#icon-zhankai-jingguo"></use>
           </svg>
         </n-flex>
@@ -70,34 +70,32 @@
 
     <!-- 内容区 -->
     <div class="container">
+      <n-flex justify="space-between">
 
-      <!-- 左边文章列表 -->
-      <div>
+        <!-- 左边文章列表 -->
+        <div class="container-left">
 
-        <!-- 主要分类 -->
-        <div class="main-category">
-          <n-button type="info">
-            推荐
-          </n-button>
-          <n-button type="tertiary">
-            Archlinux
-          </n-button>
-          <n-button type="tertiary">
-            Java
-          </n-button>
-          <n-button type="tertiary">
-            Godot
-          </n-button>
-          <n-button type="tertiary">
-            站点
-          </n-button>
-        </div>
+          <!-- 主要分类 -->
+          <div class="main-category">
+            <n-button type="info">
+              推荐
+            </n-button>
+            <n-button type="tertiary">
+              Archlinux
+            </n-button>
+            <n-button type="tertiary">
+              Java
+            </n-button>
+            <n-button type="tertiary">
+              Godot
+            </n-button>
+            <n-button type="tertiary">
+              站点
+            </n-button>
+          </div>
 
-        <!-- 内容区文章列表 -->
-        <div class="article-list">
-
-          <!-- 单篇文章 -->
-          <n-flex justify="start" align="center">
+          <!-- 内容区文章列表——单篇文章 -->
+          <n-flex justify="start">
             <div class="main-article">
 
               <!-- 图片部分 -->
@@ -306,16 +304,268 @@
               </div>
             </div>
           </n-flex>
+
+          <!-- 分页 -->
+          <div class="main-page">
+            <n-flex justify="center">
+              <n-pagination v-model:page="page" :page-count="100"/>
+            </n-flex>
+          </div>
         </div>
 
-        <!-- 分页 -->
-        <div class="main-page">
-          <n-flex justify="center" align="center">
-            <n-pagination v-model:page="page" :page-count="100"/>
-          </n-flex>
-        </div>
+        <!-- 右边侧边栏 -->
+        <div class="container-right">
 
-      </div>
+          <!-- 站长卡片 -->
+          <div class="container-author-info">
+
+            <!-- 头像 -->
+            <n-image
+                width="245"
+                src="/src/assets/images/avatar.svg"
+            />
+
+            <!-- 站长信息 -->
+            <div class="author-info">
+
+              <!-- 文字和图标 -->
+              <n-flex justify="space-between">
+
+                <!-- 左边的文字 -->
+                <n-flex vertical>
+                  <div style="font-size: 20px ">This0</div>
+                  <div style="font-size: 12px">生活明朗，万物可期</div>
+                </n-flex>
+
+                <!-- 微信 -->
+                <n-flex vertical>
+                  <div style="margin-top: 25px;margin-left: 23px">
+                    <n-image
+                        width="25"
+                        src="/src/assets/images/icon/wx.svg"/>
+                  </div>
+                </n-flex>
+
+                <!-- github -->
+                <n-flex vertical>
+
+                  <div style="margin-top: 25px">
+                    <n-image
+                        width="25"
+                        src="/src/assets/images/icon/github.svg"/>
+                  </div>
+                </n-flex>
+              </n-flex>
+            </div>
+          </div>
+
+          <!-- 文章统计 -->
+          <div class="main-article-count">
+            <n-flex justify="start">
+
+              <!-- 单个统计卡片 -->
+              <div class="count-article">
+
+                <!-- 1.时间 -->
+                <div>
+                  2023-06-26
+                </div>
+                <!-- 2.篇数 -->
+                <div>
+                  3篇
+                </div>
+              </div>
+              <div class="count-article">
+
+                <!-- 1.时间 -->
+                <div>
+                  2023-06-26
+                </div>
+                <!-- 2.篇数 -->
+                <div>
+                  3篇
+                </div>
+              </div>
+              <div class="count-article">
+
+                <!-- 1.时间 -->
+                <div>
+                  2023-06-26
+                </div>
+                <!-- 2.篇数 -->
+                <div>
+                  3篇
+                </div>
+              </div>
+              <div class="count-article">
+
+                <!-- 1.时间 -->
+                <div>
+                  2023-06-26
+                </div>
+                <!-- 2.篇数 -->
+                <div>
+                  3篇
+                </div>
+              </div>
+              <div class="count-article">
+
+                <!-- 1.时间 -->
+                <div>
+                  2023-06-26
+                </div>
+                <!-- 2.篇数 -->
+                <div>
+                  3篇
+                </div>
+              </div>
+              <div class="count-article">
+
+                <!-- 1.时间 -->
+                <div>
+                  2023-06-26
+                </div>
+                <!-- 2.篇数 -->
+                <div>
+                  3篇
+                </div>
+              </div>
+              <div class="count-article">
+
+                <!-- 1.时间 -->
+                <div>
+                  2023-06-26
+                </div>
+                <!-- 2.篇数 -->
+                <div>
+                  3篇
+                </div>
+              </div>
+              <div class="count-article">
+
+                <!-- 1.时间 -->
+                <div>
+                  2023-06-26
+                </div>
+                <!-- 2.篇数 -->
+                <div>
+                  3篇
+                </div>
+              </div>
+            </n-flex>
+          </div>
+
+          <!-- 文章标签 -->
+          <div class="main-article-tag">
+            <n-flex justify="center">
+              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  Java
+                </n-badge>
+              </div>
+              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  Godot
+                </n-badge>
+              </div>
+              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  MVC
+                </n-badge>
+              </div>
+              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  SpringMVC
+                </n-badge>
+              </div>
+              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  SpringMVC
+                </n-badge>
+              </div>
+              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  SpringMVC
+                </n-badge>
+              </div>
+              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  SpringMVC
+                </n-badge>
+              </div>
+              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  SpringMVC
+                </n-badge>
+              </div>
+              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  SpringMVC
+                </n-badge>
+              </div>
+              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  SpringMVC
+                </n-badge>
+              </div>
+              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  SpringMVC
+                </n-badge>
+              </div>
+              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  SpringMVC
+                </n-badge>
+              </div>
+              <div style="background-color: white;padding: 5px;border-radius: 5px;margin-right: 10px">
+                <n-badge :value="520" :offset="[6, -8]">
+                  SpringMVC
+                </n-badge>
+              </div>
+            </n-flex>
+
+          </div>
+
+          <!-- 全站统计 -->
+          <div class="main-site-count" style="padding: 20px">
+            <n-flex>
+              <div>
+                <n-icon size="25">
+                  <svg class="icon">
+                    <use xlink:href="#icon-wenzhang"></use>
+                  </svg>
+                </n-icon>
+              </div>
+              <div style="font-size: 16px;font-weight: bold">文章总数</div>
+              <div style="font-size: 16px;font-weight: bold;margin-left: 50px">5645</div>
+            </n-flex>
+            <n-flex>
+              <div>
+                <n-icon size="25">
+                  <svg class="icon">
+                    <use xlink:href="#icon-fengche"></use>
+                  </svg>
+                </n-icon>
+              </div>
+              <div style="font-size: 16px;font-weight: bold">建站天数</div>
+              <div style="font-size: 16px;font-weight: bold;margin-left: 50px">5645</div>
+            </n-flex>
+            <n-flex>
+              <div>
+                <n-icon size="25">
+                  <svg class="icon">
+                    <use xlink:href="#icon-liuyanban"></use>
+                  </svg>
+                </n-icon>
+              </div>
+              <div style="font-size: 16px;font-weight: bold">全站字数</div>
+              <div style="font-size: 16px;font-weight: bold;margin-left: 50px">5645</div>
+            </n-flex>
+          </div>
+
+        </div>
+      </n-flex>
     </div>
   </n-flex>
 </template>

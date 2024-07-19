@@ -40,7 +40,7 @@ body {
     padding: 10px;
     font-size: 18px;
     background-color: whitesmoke;
-    border-radius: 10px;
+    border-radius: 15px;
     font-weight: bold;
 }
 
@@ -48,7 +48,7 @@ body {
     padding: 10px;
     width: 1170px;
     height: 280px;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 0 10px;
     background-image: url('./assets/images/banner.png');
 }
@@ -59,9 +59,9 @@ h1 {
 }
 
 .main-category {
-    width: 900px;
+    width: 905px;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 15px;
     margin-top: 10px;
     margin-bottom: 10px;
     background-color: whitesmoke;
@@ -70,10 +70,6 @@ h1 {
 .n-button {
     border-radius: 10px;
     margin-right: 10px;
-}
-
-.article-list {
-    width: 930px;
 }
 
 .main-article {
@@ -110,10 +106,61 @@ h1 {
 }
 
 .main-page {
-    width: 900px;
+    width: 905px;
     height: 32px;
     padding: 10px;
     margin-top: 20px;
-    margin-bottom: 20px;
     font-weight: bold;
+    background-color: yellowgreen;
+}
+.container-left{
+    width: 925px;
+    background-color: aqua;
+}
+.container-right{
+    width: 245px;
+    height: 1182px;
+    background-color: aqua;
+}
+.author-info{
+    padding: 20px;
+}
+.container-author-info{
+    margin-top: 10px;
+    border-radius: 15px;
+    background-color: #d5cba5;
+}
+
+.main-article-count{
+    height: 290px;
+    width: 225px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: aquamarine;
+    border-radius: 15px;
+}
+.count-article{
+    width: 86px;
+    /*margin-top: 0px;*/
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: #af3d3d;
+    padding: 10px;
+}
+.main-article-tag{
+    height: 330px;
+    width: 225px;
+    margin-top: 20px;
+    padding-top: 30px;
+    padding-right: 20px;
+    background-color: #467c6a;
+    border-radius: 15px;
+}
+.main-site-count{
+    margin-top: 20px;
+    height: 106px;
+    width: 205px;
+    /*padding: 10px;*/
+    background-color: #cc8f6f;
+    border-radius: 15px;
 }
