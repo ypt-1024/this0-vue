@@ -10,6 +10,28 @@ body {
     margin: 0 auto;
 }
 
+a {
+    color: inherit; /* 继承父元素的颜色 */
+    text-decoration: none; /* 移除下划线 */
+    transition: color 0.3s ease; /* 平滑过渡效果 */
+
+    /* 鼠标悬停样式 */
+    &:hover {
+        color: inherit; /* 保持颜色不变 */
+        text-decoration: none; /* 保持无下划线 */
+    }
+
+    /* 鼠标点击后的样式 */
+    &:active {
+        color: inherit; /* 保持颜色不变 */
+    }
+
+    /* 已访问链接的样式 */
+    &:visited {
+        color: inherit; /* 保持颜色不变 */
+    }
+}
+
 /*阿里图标库*/
 .icon {
     width: 2em;

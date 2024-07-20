@@ -78,19 +78,14 @@
           <!-- 主要分类 -->
           <div class="main-category">
             <n-button type="info">
-              推荐
+              <a href="http://localhost:5173">
+                推荐
+              </a>
             </n-button>
-            <n-button type="tertiary">
-              Archlinux
-            </n-button>
-            <n-button type="tertiary">
-              Java
-            </n-button>
-            <n-button type="tertiary">
-              Godot
-            </n-button>
-            <n-button type="tertiary">
-              站点
+            <n-button v-for="(category, index) in categoryList" :key="index" type="tertiary">
+              <a href="http://localhost:5173">
+                {{ category.cname }}
+              </a>
             </n-button>
           </div>
 
@@ -674,17 +669,31 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {ref, onMounted} from "vue";
 import {NIcon} from "naive-ui";
 import {RouterLink} from "vue-router";
+
+// 图标
 import {
-  PersonOutline as PersonIcon,
-  Book, BuildSharp, PlanetSharp, Bulb
+  PersonOutline as PersonIcon, Book, BuildSharp, PlanetSharp, Bulb
 } from "@vicons/ionicons5";
+
+onMounted(() => {
+  getCategoryList()
+})
+
+import {listCategory} from '@/api/category.js'
+
+// 文章分类集合
+const categoryList = ref([])
+const getCategoryList = async () => {
+  //解构，从后端接口拿到实际的数据，赋值给响应式对象categoryList
+  const {data} = await listCategory()
+  categoryList.value = data
+}
 
 // 用来渲染图标的函数
 const renderIcon = (icon) => () => h(NIcon, null, {default: () => h(icon)});
-
 const menuOptions = [
   {
     label: "文章",
@@ -754,7 +763,6 @@ const menuOptions = [
     ]
   },
 ];
-
 const activeKey = ref(null);
 </script>
 <style lang="scss" scoped>
