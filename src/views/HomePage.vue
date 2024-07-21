@@ -92,199 +92,29 @@
           <!-- 内容区文章列表——单篇文章 -->
           <n-flex justify="start">
 
-            <div class="main-article">
+            <div v-for="(article, index) in articleList" :key="index" class="main-article">
 
               <!-- 图片部分 -->
               <div class="articlebg">
+
                 <!-- 1.文章标题 -->
                 <n-flex justify="center">
-                  <div class="article-title">
-                    【spring MVC】
+                  <div  class="article-title">
+                  {{article.title}}
                   </div>
                 </n-flex>
               </div>
 
               <!-- 文章摘要 -->
               <div class="article-abstract">
-                Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web
-                Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC
-                模块。
+                {{article.introduction}}
               </div>
 
               <!-- 文章发表时间 -->
               <div class="article-publish">
-                发布于 2023-06-26
+                {{article.createTime}}
               </div>
             </div>
-            <div class="main-article">
-
-              <!-- 图片部分 -->
-              <div class="articlebg">
-                <!-- 1.文章标题 -->
-                <n-flex justify="center">
-                  <div class="article-title">
-                    【spring MVC】
-                  </div>
-                </n-flex>
-              </div>
-
-              <!-- 2.文章摘要 -->
-              <div class="article-abstract">
-                Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web
-                Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC
-                模块。
-              </div>
-
-              <!-- 3.文章发表时间 -->
-              <div class="article-publish">
-                发布于 2023-06-26
-              </div>
-            </div>
-            <div class="main-article">
-
-              <!-- 图片部分 -->
-              <div class="articlebg">
-                <!-- 1.文章标题 -->
-                <n-flex justify="center">
-                  <div class="article-title">
-                    【spring MVC】
-                  </div>
-                </n-flex>
-              </div>
-
-              <!-- 2.文章摘要 -->
-              <div class="article-abstract">
-                Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web
-                Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC
-                模块。
-              </div>
-
-              <!-- 3.文章发表时间 -->
-              <div class="article-publish">
-                发布于 2023-06-26
-              </div>
-            </div>
-            <div class="main-article">
-
-              <!-- 图片部分 -->
-              <div class="articlebg">
-                <!-- 1.文章标题 -->
-                <n-flex justify="center">
-                  <div class="article-title">
-                    【spring MVC】
-                  </div>
-                </n-flex>
-              </div>
-
-              <!-- 2.文章摘要 -->
-              <div class="article-abstract">
-                Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web
-                Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC
-                模块。
-              </div>
-
-              <!-- 3.文章发表时间 -->
-              <div class="article-publish">
-                发布于 2023-06-26
-              </div>
-            </div>
-            <div class="main-article">
-
-              <!-- 图片部分 -->
-              <div class="articlebg">
-                <!-- 1.文章标题 -->
-                <n-flex justify="center">
-                  <div class="article-title">
-                    【spring MVC】
-                  </div>
-                </n-flex>
-              </div>
-
-              <!-- 2.文章摘要 -->
-              <div class="article-abstract">
-                Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web
-                Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC
-                模块。
-              </div>
-
-              <!-- 3.文章发表时间 -->
-              <div class="article-publish">
-                发布于 2023-06-26
-              </div>
-            </div>
-            <div class="main-article">
-
-              <!-- 图片部分 -->
-              <div class="articlebg">
-                <!-- 1.文章标题 -->
-                <n-flex justify="center">
-                  <div class="article-title">
-                    【spring MVC】
-                  </div>
-                </n-flex>
-              </div>
-
-              <!-- 2.文章摘要 -->
-              <div class="article-abstract">
-                Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web
-                Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC
-                模块。
-              </div>
-
-              <!-- 3.文章发表时间 -->
-              <div class="article-publish">
-                发布于 2023-06-26
-              </div>
-            </div>
-            <div class="main-article">
-
-              <!-- 图片部分 -->
-              <div class="articlebg">
-                <!-- 1.文章标题 -->
-                <n-flex justify="center">
-                  <div class="article-title">
-                    【spring MVC】
-                  </div>
-                </n-flex>
-              </div>
-
-              <!-- 2.文章摘要 -->
-              <div class="article-abstract">
-                Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web
-                Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC
-                模块。
-              </div>
-
-              <!-- 3.文章发表时间 -->
-              <div class="article-publish">
-                发布于 2023-06-26
-              </div>
-            </div>
-            <div class="main-article">
-
-              <!-- 图片部分 -->
-              <div class="articlebg">
-                <!-- 1.文章标题 -->
-                <n-flex justify="center">
-                  <div class="article-title">
-                    【spring MVC】
-                  </div>
-                </n-flex>
-              </div>
-
-              <!-- 2.文章摘要 -->
-              <div class="article-abstract">
-                Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web
-                Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC
-                模块。
-              </div>
-
-              <!-- 3.文章发表时间 -->
-              <div class="article-publish">
-                发布于 2023-06-26
-              </div>
-            </div>
-
           </n-flex>
 
           <!-- 分页 -->
@@ -678,11 +508,13 @@ import {
   PersonOutline as PersonIcon, Book, BuildSharp, PlanetSharp, Bulb
 } from "@vicons/ionicons5";
 
+import {listCategory} from '@/api/category.js'
+import {listArticle} from '@/api/article.js'
+
 onMounted(() => {
   getCategoryList()
+  getarticleList()
 })
-
-import {listCategory} from '@/api/category.js'
 
 // 文章分类集合
 const categoryList = ref([])
@@ -690,6 +522,22 @@ const getCategoryList = async () => {
   //解构，从后端接口拿到实际的数据，赋值给响应式对象categoryList
   const {data} = await listCategory()
   categoryList.value = data
+}
+
+//文章列表，接收数据
+const articleList = ref([])
+//文章对象（开始为null,有结果之后能拿到结果）
+const articleData = {
+  cid: null,
+}
+
+//响应式文章对象
+const article = ref(articleData)
+
+// 异步查询所有文章的函数
+const getarticleList = async () => {
+  const {data} = await listArticle(article)
+  articleList.value = data
 }
 
 // 用来渲染图标的函数
