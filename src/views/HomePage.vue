@@ -78,12 +78,12 @@
           <!-- 主要分类 -->
           <div class="main-category">
             <n-button type="info">
-              <a href="http://localhost:5173">
+              <a href="javascript:;">
                 推荐
               </a>
             </n-button>
             <n-button v-for="(category, index) in categoryList" :key="index" type="tertiary">
-              <a href="http://localhost:5173">
+              <a href="javascript:;" @click="getArticleByCid(category.cid)">
                 {{ category.cname }}
               </a>
             </n-button>
@@ -99,20 +99,20 @@
 
                 <!-- 1.文章标题 -->
                 <n-flex justify="center">
-                  <div  class="article-title">
-                  {{article.title}}
+                  <div class="article-title">
+                    {{ article.title }}
                   </div>
                 </n-flex>
               </div>
 
               <!-- 文章摘要 -->
               <div class="article-abstract">
-                {{article.introduction}}
+                {{ article.introduction }}
               </div>
 
               <!-- 文章发表时间 -->
               <div class="article-publish">
-                {{article.createTime}}
+                {{ article.createTime }}
               </div>
             </div>
           </n-flex>
@@ -513,7 +513,7 @@ import {listArticle} from '@/api/article.js'
 
 onMounted(() => {
   getCategoryList()
-  getarticleList()
+  getArticleList()
 })
 
 // 文章分类集合
@@ -535,9 +535,15 @@ const articleData = {
 const article = ref(articleData)
 
 // 异步查询所有文章的函数
-const getarticleList = async () => {
-  const {data} = await listArticle(article)
+const getArticleList = async () => {
+  const {data} = await listArticle(article.value)
   articleList.value = data
+}
+
+// 按分类查询cid
+const getArticleByCid = (cid) => {
+  article.value.cid = cid
+  getArticleList()
 }
 
 // 用来渲染图标的函数
