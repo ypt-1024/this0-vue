@@ -1,6 +1,10 @@
 <script setup>
-import {ref, onMounted} from "vue";
-import {RouterLink} from "vue-router";
+import {ref, onMounted} from 'vue'
+import {RouterLink, useRoute, useRouter} from 'vue-router'
+import {showArticle} from '@/api/article'
+
+import {MdPreview} from 'md-editor-v3';
+import 'md-editor-v3/lib/preview.css';
 import {NIcon} from "naive-ui";
 
 // 图标
@@ -8,44 +12,32 @@ import {
   PersonOutline as PersonIcon, Book, BuildSharp, PlanetSharp, Bulb
 } from "@vicons/ionicons5";
 
-import {listCategory} from '@/api/category.js'
-import {listArticle} from '@/api/article.js'
-import {useRoute, useRouter} from 'vue-router'
+const v3id = 'preview-only';
+const scrollElement = document.documentElement;
+//获取路由对象
+const route = useRoute()
 
-onMounted(() => {
-  getCategoryList()
-  getArticleList()
-})
-
-// 文章分类集合
-const categoryList = ref([])
-const getCategoryList = async () => {
-  //解构，从后端接口拿到实际的数据，赋值给响应式对象categoryList
-  const {data} = await listCategory()
-  categoryList.value = data
-}
-
-//文章列表，接收数据
-const articleList = ref([])
-//文章对象（开始为null,有结果之后能拿到结果）
+// 文章数据
 const articleData = {
-  cid: null,
+  // id: null,
+  // title: null,
+  // content: '',
+  // cid: null,
+  // uid: null,
+  // createTime: null,
+  // updateTime: null,
 }
-
-//响应式文章对象
 const article = ref(articleData)
 
-// 异步查询所有文章的函数
-const getArticleList = async () => {
-  const {data} = await listArticle(article.value)
-  articleList.value = data
-}
+//从后端获取文章数据
+const getArticle = async () => {
 
-// 按分类查询cid
-const getArticleByCid = (cid) => {
-  article.value.cid = cid
-  getArticleList()
+  //TODO 上个页面通过路由传来的参数id
+  let id = route.query.id
+  const {data} = await showArticle(id)
+  article.value = data
 }
+onMounted(() => getArticle())
 
 // 用来渲染图标的函数
 const renderIcon = (icon) => () => h(NIcon, null, {default: () => h(icon)});
@@ -118,150 +110,45 @@ const menuOptions = [
     ]
   },
 ];
-const activeKey = ref(null);
-const router = useRouter()
-const showArticle = (id) => {
-  router.push({
-    //localhost:5137/#/detail?id=1   路由路径传参
-    path: '/detail',
-    query: {id: id},
-  })
-}
 </script>
 <template>
   <n-flex vertical>
-
-    <!-- 顶部 -->
-    <div>
-
-      <!-- 顶部导航 -->
-      <div class="topbar-nav container">
-        <n-flex justify="space-between">
-
-          <!-- 左侧Home键 -->
-          <RouterLink to="/">
-            <svg class="icon">
-              <use xlink:href="#icon-home"></use>
-            </svg>
-          </RouterLink>
-
-          <!-- 中间菜单 -->
-          <div>
-            <n-menu
-                v-model:value="activeKey"
-                mode="horizontal"
-                icon-size="26"
-                :options="menuOptions"
-                responsive
-            />
-          </div>
-
-          <!-- 右侧搜索键 -->
-          <svg class="icon">
-            <use xlink:href="#icon-sousuo1"></use>
-          </svg>
-        </n-flex>
-      </div>
-
-      <!-- 顶部消息栏 -->
-      <div class="topbar-message container">
-        <n-flex justify="space-between" align="center">
-
-          <!-- 左侧即刻 -->
-          <span>
-             即刻
-            </span>
-
-          <!-- 消息内容 -->
-          <span>
-            This0-开源Vitepress主题
-          </span>
-
-          <!-- 右侧展开图标 -->
-          <svg class="icon">
-            <use xlink:href="#icon-zhankai-jingguo"></use>
-          </svg>
-        </n-flex>
-      </div>
-
-      <!-- 顶部Banner -->
-      <div class="topbar-banner container">
-        <br>
-        <n-flex justify="start" align="end">
-
-          <!-- 左侧站点信息 -->
-          <h1>This0</h1>
-        </n-flex>
-        <n-flex justify="start" align="stretch">
-          <h1>这是站点描述</h1>
-        </n-flex>
-      </div>
-    </div>
 
     <!-- 内容区 -->
     <div class="container">
       <n-flex justify="space-between">
 
-        <!-- 左边文章列表 -->
-        <div class="container-left">
+        <!-- 顶部导航 -->
+        <div class="topbar-nav container">
+          <n-flex justify="space-between">
 
-          <!-- 主要分类 -->
-          <div class="main-category">
-            <n-button type="info">
-              <a href="javascript:;">
-                推荐
-              </a>
-            </n-button>
-            <n-button v-for="(category, index) in categoryList" :key="index" type="tertiary">
-              <a href="javascript:;" @click="getArticleByCid(category.cid)">
-                {{ category.cname }}
-              </a>
-            </n-button>
-          </div>
+            <!-- 左侧Home键 -->
+            <RouterLink to="/">
+              <svg class="icon">
+                <use xlink:href="#icon-home"></use>
+              </svg>
+            </RouterLink>
 
-          <!-- 内容区文章列表——单篇文章 -->
-          <n-flex justify="start">
-            <div v-for="(article, index) in articleList" :key="index" class="main-article">
-              <a href="javascript:;" @click="showArticle(article.id)">
-                <!-- 图片部分 -->
-                <div class="articlebg">
-
-                  <!-- 1.文章标题 -->
-                  <n-flex justify="center">
-                    <div class="article-title">
-
-                      {{ article.title }}
-
-                    </div>
-                  </n-flex>
-                </div>
-
-                <!-- 文章摘要 -->
-                <div class="article-abstract">
-                  {{ article.introduction }}
-                </div>
-
-                <!-- 文章发表时间 -->
-                <div class="article-publish">
-                  {{ article.createTime }}
-                </div>
-              </a>
+            <!-- 中间菜单 -->
+            <div>
+              <n-menu
+                  v-model:value="activeKey"
+                  mode="horizontal"
+                  icon-size="26"
+                  :options="menuOptions"
+                  responsive
+              />
             </div>
-          </n-flex>
 
-          <!-- 分页 -->
-          <div class="main-page">
-            <n-flex justify="center">
-              <n-pagination v-model:page="page" size="large" :page-count="100">
-                <template #prev>
-                  上一页
-                </template>
-                <template #next>
-                  下一页
-                </template>
-              </n-pagination>
-            </n-flex>
-          </div>
+            <!-- 右侧搜索键 -->
+            <svg class="icon">
+              <use xlink:href="#icon-sousuo1"></use>
+            </svg>
+          </n-flex>
+        </div>
+        <!-- 左边文章 -->
+        <div class="container-left" style="margin-top: 10px">
+          <MdPreview :editorId="v3id" :modelValue="article.content"/>
         </div>
 
         <!-- 右边侧边栏 -->
@@ -629,6 +516,5 @@ const showArticle = (id) => {
     </div>
   </n-flex>
 </template>
-<style lang="scss" scoped>
-
+<style>
 </style>
