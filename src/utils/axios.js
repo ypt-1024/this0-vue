@@ -1,8 +1,9 @@
 import axios from "axios";
 // 使用Naive UI Message做消息提醒
-import {useMessage} from "naive-ui";
+const {message} = createDiscreteApi(['message'])
 
 import cookie from 'js-cookie'
+import {createDiscreteApi} from "naive-ui";
 
 //1. 创建新的axios实例，
 const service = axios.create({
@@ -39,7 +40,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     (response) => {
         if (response.data.code !== 200) {
-            useMessage.error(response.data.message);
+            message.error(response.data.message);
             return Promise.resolve(error.response);
         } else {
             return response.data
@@ -47,7 +48,7 @@ service.interceptors.response.use(
     },
     (error) => {
         /***** 接收到异常响应的处理开始 *****/
-        useMessage.error("连接服务器失败");
+        message.error("连接服务器失败");
         //useMessage.error(useMessage.error)
         /***** 处理结束 *****/
         //如果不需要错误处理，以上的处理过程都可省略
