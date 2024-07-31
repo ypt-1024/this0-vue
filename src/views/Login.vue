@@ -1,10 +1,24 @@
 <script setup>
+import {useRouter, useRoute} from 'vue-router'
+import {onMounted, ref} from 'vue';
+import cookie from 'js-cookie'
+import {NForm, NButton} from 'naive-ui';
 
+const router = useRouter()
+const route = useRoute()
+
+// 登录注册按钮
+const signInBtn = ref(null);
+const signUpBtn = ref(null);
+const container = ref(null);
+
+//视差包
 import Parallax from 'parallax-js';
 
 let parallaxInstance = null;
 onMounted(() => {
 
+  // 视差
   const sceneElement = document.getElementById('scene');
   if (sceneElement) {
     parallaxInstance = new Parallax(sceneElement, {
@@ -14,6 +28,7 @@ onMounted(() => {
     });
   }
 
+  // 登录注册滑动
   if (signInBtn.value && signUpBtn.value && container.value) {
     signInBtn.value.addEventListener('click', () => {
       container.value.classList.remove('panel-active');
@@ -24,12 +39,51 @@ onMounted(() => {
     });
   }
 });
-import {onMounted, ref} from 'vue';
 
-const signInBtn = ref(null);
-const signUpBtn = ref(null);
-const container = ref(null);
+import {login} from '../api/user.js'
 
+
+// user实体类型
+const defaultForm = {
+  username: '',
+  password: '',
+}
+
+const user = ref(defaultForm)
+
+//验证登录数据
+const pageParamsLogin = {
+  username: [
+    {required: true, message: '请输入用户名', trigger: 'blur'},
+    {min: 3, max: 12, message: '用户名长度在 3 到 12 个字符', trigger: 'blur'},
+  ],
+  password: [
+    {required: true, message: '请输入密码', trigger: 'blur'},
+    {min: 6, max: 18, message: '密码长度在 6 到 18 个字符', trigger: 'blur'},
+  ],
+}
+
+// 登录验证规则
+const loginFormRules = ref(pageParamsLogin)
+
+// 用ref标签拿到表单实例
+const loginFormRef = ref()
+
+const loginUser = async () => {
+
+  //登录表单验证判断
+  const flag = loginFormRef.value.validate()
+
+  if (flag) {
+    const {data, code} = await login(user.value)
+
+    if (code == 200) {
+      cookie.set('uid', data.uid, {path: '/', expires: 1})
+      cookie.set('username', data.username, {path: '/', expires: 1})
+      router.push('/dashboard/article')
+    }
+  }
+}
 
 </script>
 <template>
@@ -107,21 +161,27 @@ const container = ref(null);
                    placeholder="邮箱" class="input"/>
             <input type="password"
                    placeholder="密码" class="input"/>
-            <botton class="btn">注册</botton>
+            <button class="btn">注册</button>
           </n-form>
         </div>
 
         <div class="formbox login" ref="loginFormBox">
 
           <!-- 登录表单内容 -->
-          <n-form class="form" id="form2">
+          <n-form class="form" id="form2" ref="loginFormRef" :model="user" :rules="loginFormRules">
             <h2 class="title">登录</h2>
-            <input type="email"
-                   placeholder="邮箱" class="input"/>
-            <input type="password"
-                   placeholder="密码" class="input"/>
+            <n-form-item path="username" label="用户名">
+              <n-input v-model:value="user.username"/>
+            </n-form-item>
+            <n-form-item path="password" label="密码">
+              <n-input
+                  v-model:value="user.password"
+                  type="password"
+              />
+            </n-form-item>
+
             <a href="#" class="link">忘记密码</a>
-            <botton class="btn">登录</botton>
+            <button class="btn" @click="loginUser">登录</button>
           </n-form>
         </div>
 
@@ -131,7 +191,7 @@ const container = ref(null);
               <button class="btn" id="signIn" ref="signInBtn">已有账号？立即登录</button>
             </div>
             <div class="panel over-right">
-              <button class="btn" id="signup" ref="signUpBtn">无账号？立即登录</button>
+              <button class="btn" id="signup" ref="signUpBtn">无账号？立即注册</button>
             </div>
           </div>
         </div>
