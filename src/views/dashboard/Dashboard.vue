@@ -1,18 +1,20 @@
 <template>
 
+
+
   <!--  总面板-->
   <div class="main-panel">
 
+    <n-flex justify="space-between">
+
     <!--    菜单面板-->
-    <div class="menus">
+    <div class="menus" >
 
       <!--     后台banner-->
-      <div>
         <n-image
             width="100"
             src="https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
         />
-      </div>
 
       <!--      侧边栏菜单-->
       <div v-for="(menu, index) in menus" @click="toPage(menu)">
@@ -21,9 +23,10 @@
     </div>
 
     <!--    后台子页面路由-->
-    <div style="padding: 20px; width: 80%">
+    <div style=" width: 85%">
       <router-view></router-view>
     </div>
+    </n-flex>
   </div>
 
 
@@ -72,20 +75,22 @@ const toPage = (menu) => {
 </script>
 
 <style lang="scss" scoped>
+
+  //主面板
 .main-panel {
+  background-color: #EDECEA;
   font-size: large;
   font-weight: bold;
-  display: flex;
-  color: #64676a;
-  max-width: 100%;
 }
 
+//侧边菜单
 .menus {
+  border-radius: 10px;
   line-height: 55px;
   text-align: center;
-  width: 15%;
-  height: 100%;
-  border-right: 2px solid #dadada;
+  width: 13%;
+  background-color: #F7F7F5;
+  //border-right: 2px solid #dadada;
   cursor: pointer;
 }
 
