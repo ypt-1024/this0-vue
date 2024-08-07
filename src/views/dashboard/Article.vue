@@ -18,8 +18,32 @@
 </template>
 
 <script setup>
+import {MdPreview} from "md-editor-v3";
+import 'md-editor-v3/lib/preview.css';
+import {useDialog} from "naive-ui";
 import {NButton, NDataTable, useMessage} from "naive-ui";
 import cookie from 'js-cookie'
+import {listArticleByUid, showArticle} from '@/api/article'
+
+const dialog = useDialog();
+const v3id = 'v3id-2'; // 编辑器id
+
+const handleButtonClick = async (row) => {
+
+  //拿到单篇文章数据
+  const {data} = await showArticle(row.id)
+  article.value = data
+
+  // 渲染内容
+  const content = () => h(MdPreview, {editorId: v3id, modelValue: article.value.content});
+
+  dialog.create({
+    title: article.value.title,
+    content, // 使用 content 变量
+    showIcon: false,
+    style:"width:60%"
+  });
+};
 
 // 创建表格列的函数
 const createColumns = ({play, deleteRow}) => [
@@ -37,7 +61,7 @@ const createColumns = ({play, deleteRow}) => [
           h(NButton, {
             size: "small",
             type: "info",
-            onClick: () => play(row),
+            onClick: () => handleButtonClick(row),
           }, "查看"),
           h(NButton, {
             size: "small",
@@ -48,7 +72,6 @@ const createColumns = ({play, deleteRow}) => [
   }
 ];
 
-import {listArticleByUid} from '@/api/article'
 
 let list = ref([])
 
@@ -78,7 +101,6 @@ const message = useMessage();
 
 // 创建列定义
 const columns = createColumns({
-  play: (row) => message.info(`查看 ${row.title}`),
   deleteRow: (row) => message.info(`删除 ${row.title}`)
 });
 
