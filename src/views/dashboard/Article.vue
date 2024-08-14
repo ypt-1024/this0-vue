@@ -18,17 +18,19 @@
 </template>
 
 <script setup>
-import {MdPreview} from "md-editor-v3";
+import {MdPreview,MdEditor} from "md-editor-v3";
 import 'md-editor-v3/lib/preview.css';
+import 'md-editor-v3/lib/style.css';
 import {useDialog} from "naive-ui";
 import {NButton, NDataTable, useMessage} from "naive-ui";
 import cookie from 'js-cookie'
-import {listArticleByUid, showArticle} from '@/api/article'
+import {listArticleByUid, showArticle,updataArticleById} from '@/api/article'
 
 const dialog = useDialog();
-const v3id = 'v3id-2'; // 编辑器id
+const v3id = 'v3id-2'; // 仅预览id
+const v3id3 = 'v3id-3'; // 编辑器id
 
-const handleButtonClick = async (row) => {
+const show = async (row) => {
 
   //拿到单篇文章数据
   const {data} = await showArticle(row.id)
@@ -61,8 +63,13 @@ const createColumns = ({play, deleteRow}) => [
           h(NButton, {
             size: "small",
             type: "info",
-            onClick: () => handleButtonClick(row),
+            onClick: () => show(row),
           }, "查看"),
+          h(NButton, {
+            size: "small",
+            type: "info",
+            onClick: () => update(row),
+          }, "修改"),
           h(NButton, {
             size: "small",
             type: "error",
@@ -108,7 +115,61 @@ const columns = createColumns({
 const pagination = true;
 onMounted(() => {
   getArticleList()
+  getCategoryList()
 })
+
+// 获取文章分类列表
+const categoryList=ref([])
+const getCategoryList = async () => {
+  const { data } = await listCategory()
+  categoryList.value = data
+}
+
+//3.修改文章之前，先要展示要修改的文章
+//同样是单个查询，不过用来显示的组件不一样
+const update = async (row) => {
+
+  //拿到单篇文章数据
+  const {data} = await showArticle(row.id)
+  article.value = data
+
+  //渲染编辑器内容
+  const content = () => h(MdEditor , {editorId: v3id3, modelValue: article.value.content,
+
+    //提交事件
+    onSave: submit,
+
+    //这里绑定一个 onInput 事件处理器，监听输入值
+    'onUpdate:modelValue': (val) => {
+      article.value.content= val;
+    }});
+
+  dialog.create({
+    title: article.value.title,
+    content, // 使用 content 变量
+    showIcon: false,
+    style: {
+      width: '1546px',
+      height: '80vh', // 设置高度为视口高度的80%
+      maxWidth: 'calc(100vw - 32px)',
+      maxHeight: 'calc(100vh - 128px)',
+      overflowY: 'auto'
+    }
+  });
+}
+
+//4.修改 或 新增
+const submit = async () => {
+
+  //根据article的id做判断即可
+  if (article.value.id) {
+    const { code } = await updataArticleById(article.value)
+    if (code == 200) {
+      message.success("修改文章成功");
+      getArticleList()
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -120,4 +181,5 @@ onMounted(() => {
 .tools-div {
   margin-top: 20px;
 }
+
 </style>
