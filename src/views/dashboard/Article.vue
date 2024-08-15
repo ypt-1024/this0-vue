@@ -1,10 +1,10 @@
 <template>
 
 
-    <!-- 添加文章按钮 -->
-    <div class="tools-div">
-      <n-button @click="addShow" type="info">新增文章</n-button>
-    </div>
+  <!-- 添加文章按钮 -->
+  <div class="tools-div">
+    <n-button @click="addShow" type="info">新增文章</n-button>
+  </div>
 
   <!-- 表格数据 -->
   <div class="main-div">
@@ -18,13 +18,16 @@
 </template>
 
 <script setup>
-import {MdPreview,MdEditor} from "md-editor-v3";
+import {MdPreview, MdEditor} from "md-editor-v3";
 import 'md-editor-v3/lib/preview.css';
 import 'md-editor-v3/lib/style.css';
 import {useDialog} from "naive-ui";
-import {NButton, NInput ,NSelect ,NDataTable, useMessage} from "naive-ui";
+import {NButton, NInput, NSelect, NDataTable, useMessage} from "naive-ui";
 import cookie from 'js-cookie'
-import {listArticleByUid, showArticle,updataArticleById} from '@/api/article'
+import {
+  listArticleByUid, showArticle, updataArticleById, insertArticle,
+  deleteArticleById,
+} from '@/api/article'
 import {listCategory} from '@/api/category'
 
 const dialog = useDialog();
@@ -44,7 +47,7 @@ const show = async (row) => {
     title: article.value.title,
     content, // 使用 content 变量
     showIcon: false,
-    style:"width:60%"
+    style: "width:60%"
   });
 };
 
@@ -52,7 +55,8 @@ const show = async (row) => {
 const createColumns = ({deleteRow}) => [
   {title: "文章id", key: "id"},
   {title: "文章标题", key: "title"},
-  {title: "文章分类", key: "cid",render: (row) => {
+  {
+    title: "文章分类", key: "cid", render: (row) => {
 
       // 查找 cid 对应的分类名称
       const category = categoryList.value.find(item => item.value === row.cid);
@@ -127,10 +131,10 @@ onMounted(() => {
 })
 
 // 获取文章分类列表
-const categoryList=ref([])
+const categoryList = ref([])
 const getCategoryList = async () => {
-  const { data } = await listCategory()
-  categoryList.value = data.map(item=>({
+  const {data} = await listCategory()
+  categoryList.value = data.map(item => ({
     label: item.cname,
     value: item.cid
   }))
@@ -146,48 +150,50 @@ const update = async (row) => {
 
   //渲染编辑器内容
   const content = () => h(
-      'div', null,[
-          h(NInput,{
-            value: article.value.title,
-            'onUpdate:value': (val) => {
-              article.value.title = val;
-            },
-            placeholder: '请输入文章标题',
-            size: 'large',
-            style: { marginBottom: '16px' } // 添加一些底部边距以区分输入框和编辑器
-          }),
-        h(NInput,{
-            value: article.value.introduction,
-            'onUpdate:value': (val) => {
-              article.value.introduction = val;
-            },
-            placeholder: '请输入文章简介',
-            size: 'large',
-            style: { marginBottom: '16px' } // 添加一些底部边距以区分输入框和编辑器
-          }),
+      'div', null, [
+        h(NInput, {
+          value: article.value.title,
+          'onUpdate:value': (val) => {
+            article.value.title = val;
+          },
+          placeholder: '请输入文章标题',
+          size: 'large',
+          style: {marginBottom: '16px'} // 添加一些底部边距以区分输入框和编辑器
+        }),
+        h(NInput, {
+          value: article.value.introduction,
+          'onUpdate:value': (val) => {
+            article.value.introduction = val;
+          },
+          placeholder: '请输入文章简介',
+          size: 'large',
+          style: {marginBottom: '16px'} // 添加一些底部边距以区分输入框和编辑器
+        }),
         h(NSelect, {
           value: article.value.category,
           options: categoryList.value,
           'onUpdate:value': (val) => {
             article.value.cid = val;
           },
-          placeholder: '请选择文章分类',
+          placeholder: '修改文章分类',
           size: 'large',
-          style: { marginBottom: '16px' }
+          style: {marginBottom: '16px'}
         }),
 
-      h(
-          MdEditor , {editorId: v3id3, modelValue: article.value.content,
+        h(
+            MdEditor, {
+              editorId: v3id3, modelValue: article.value.content,
 
-            //提交事件
-            onSave: submit,
+              //提交事件
+              onSave: submit,
 
-            //这里绑定一个 onInput 事件处理器，监听输入值
-            'onUpdate:modelValue': (val) => {
-              article.value.content= val;
-            }}
-      )
-    ]);
+              //这里绑定一个 onInput 事件处理器，监听输入值
+              'onUpdate:modelValue': (val) => {
+                article.value.content = val;
+              }
+            }
+        )
+      ]);
 
   dialog.create({
     title: article.value.title,
@@ -208,12 +214,85 @@ const submit = async () => {
 
   //根据article的id做判断即可
   if (article.value.id) {
-    const { code } = await updataArticleById(article.value)
+    const {code} = await updataArticleById(article.value)
     if (code == 200) {
       message.success("修改文章成功");
       getArticleList()
     }
+  } else {
+
+    //从cookie获得uid，新增文章
+    const uid = cookie.get('uid')
+    article.value.uid = uid
+    const {code} = await insertArticle(article.value)
+    if (code == 200) {
+      message.success("添加文章成功")
+      getArticleList()
+    }
   }
+}
+
+const addShow = async () => {
+
+  //渲染编辑器内容
+  const content = () => h(
+      'div', null, [
+        h(NInput, {
+          value: article.value.title,
+          'onUpdate:value': (val) => {
+            article.value.title = val;
+          },
+          placeholder: '请输入文章标题',
+          size: 'large',
+          style: {marginBottom: '16px'} // 添加一些底部边距以区分输入框和编辑器
+        }),
+        h(NInput, {
+          value: article.value.introduction,
+          'onUpdate:value': (val) => {
+            article.value.introduction = val;
+          },
+          placeholder: '请输入文章简介',
+          size: 'large',
+          style: {marginBottom: '16px'} // 添加一些底部边距以区分输入框和编辑器
+        }),
+        h(NSelect, {
+          value: article.value.category,
+          options: categoryList.value,
+          'onUpdate:value': (val) => {
+            article.value.cid = val;
+          },
+          placeholder: '选择文章分类',
+          size: 'large',
+          style: {marginBottom: '16px'}
+        }),
+
+        h(
+            MdEditor, {
+              editorId: v3id3, modelValue: article.value.content,
+
+              //提交事件
+              onSave: submit,
+
+              //这里绑定一个 onInput 事件处理器，监听输入值
+              'onUpdate:modelValue': (val) => {
+                article.value.content = val;
+              }
+            }
+        )
+      ]);
+
+  dialog.create({
+    title: article.value.title,
+    content, // 使用 content 变量
+    showIcon: false,
+    style: {
+      width: '1546px',
+      height: '80vh', // 设置高度为视口高度的80%
+      maxWidth: 'calc(100vw - 32px)',
+      maxHeight: 'calc(100vh - 128px)',
+      overflowY: 'auto'
+    }
+  });
 }
 </script>
 
