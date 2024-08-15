@@ -22,9 +22,10 @@ import {MdPreview,MdEditor} from "md-editor-v3";
 import 'md-editor-v3/lib/preview.css';
 import 'md-editor-v3/lib/style.css';
 import {useDialog} from "naive-ui";
-import {NButton, NDataTable, useMessage} from "naive-ui";
+import {NButton, NInput ,NSelect ,NDataTable, useMessage} from "naive-ui";
 import cookie from 'js-cookie'
 import {listArticleByUid, showArticle,updataArticleById} from '@/api/article'
+import {listCategory} from '@/api/category'
 
 const dialog = useDialog();
 const v3id = 'v3id-2'; // 仅预览id
@@ -48,9 +49,16 @@ const show = async (row) => {
 };
 
 // 创建表格列的函数
-const createColumns = ({play, deleteRow}) => [
+const createColumns = ({deleteRow}) => [
   {title: "文章id", key: "id"},
   {title: "文章标题", key: "title"},
+  {title: "文章分类", key: "cid",render: (row) => {
+
+      // 查找 cid 对应的分类名称
+      const category = categoryList.value.find(item => item.value === row.cid);
+      return h('span', null, category ? category.label : '未知分类');
+    },
+  },
   {title: "文章摘要", key: "introduction"},
   {title: "发布时间", key: "updateTime"},
   {
@@ -122,7 +130,10 @@ onMounted(() => {
 const categoryList=ref([])
 const getCategoryList = async () => {
   const { data } = await listCategory()
-  categoryList.value = data
+  categoryList.value = data.map(item=>({
+    label: item.cname,
+    value: item.cid
+  }))
 }
 
 //3.修改文章之前，先要展示要修改的文章
@@ -134,15 +145,49 @@ const update = async (row) => {
   article.value = data
 
   //渲染编辑器内容
-  const content = () => h(MdEditor , {editorId: v3id3, modelValue: article.value.content,
+  const content = () => h(
+      'div', null,[
+          h(NInput,{
+            value: article.value.title,
+            'onUpdate:value': (val) => {
+              article.value.title = val;
+            },
+            placeholder: '请输入文章标题',
+            size: 'large',
+            style: { marginBottom: '16px' } // 添加一些底部边距以区分输入框和编辑器
+          }),
+        h(NInput,{
+            value: article.value.introduction,
+            'onUpdate:value': (val) => {
+              article.value.introduction = val;
+            },
+            placeholder: '请输入文章简介',
+            size: 'large',
+            style: { marginBottom: '16px' } // 添加一些底部边距以区分输入框和编辑器
+          }),
+        h(NSelect, {
+          value: article.value.category,
+          options: categoryList.value,
+          'onUpdate:value': (val) => {
+            article.value.cid = val;
+          },
+          placeholder: '请选择文章分类',
+          size: 'large',
+          style: { marginBottom: '16px' }
+        }),
 
-    //提交事件
-    onSave: submit,
+      h(
+          MdEditor , {editorId: v3id3, modelValue: article.value.content,
 
-    //这里绑定一个 onInput 事件处理器，监听输入值
-    'onUpdate:modelValue': (val) => {
-      article.value.content= val;
-    }});
+            //提交事件
+            onSave: submit,
+
+            //这里绑定一个 onInput 事件处理器，监听输入值
+            'onUpdate:modelValue': (val) => {
+              article.value.content= val;
+            }}
+      )
+    ]);
 
   dialog.create({
     title: article.value.title,
