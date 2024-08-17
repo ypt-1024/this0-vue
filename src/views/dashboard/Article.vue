@@ -52,7 +52,7 @@ const show = async (row) => {
 };
 
 // 创建表格列的函数
-const createColumns = ({deleteRow}) => [
+const articleColumns = () => [
   {title: "文章id", key: "id"},
   {title: "文章标题", key: "title"},
   {
@@ -85,7 +85,7 @@ const createColumns = ({deleteRow}) => [
           h(NButton, {
             size: "small",
             type: "error",
-            onClick: () => deleteRow(row),
+            onClick: () => deleteById(row),
           }, "删除"),
         ],
   }
@@ -119,9 +119,7 @@ const getArticleList = async () => {
 const message = useMessage();
 
 // 创建列定义
-const columns = createColumns({
-  deleteRow: (row) => message.info(`删除 ${row.title}`)
-});
+const columns = articleColumns();
 
 // 分页设置
 const pagination = true;
@@ -294,6 +292,32 @@ const addShow = async () => {
     }
   });
 }
+
+//6,删除
+const deleteById = async (row) => {
+  dialog.warning({
+    title: "警告",
+    content: "确定删除文章？",
+    positiveText: "删除",
+    negativeText: "放弃",
+    onPositiveClick: async () => {
+      try {
+        const {code} = await deleteArticleById(row.id)
+        if (code == 200) {
+          message.success("文章已删除！");
+          getArticleList()
+        }
+      } catch {
+        message.error("删除失败");
+      }
+    },
+    onNegativeClick: () => {
+      message.info("放弃删除");
+    }
+  });
+}
+
+
 </script>
 
 <style scoped>
