@@ -6,3 +6,26 @@ export const listCategory = () => {
         url: '/category/showAll', method: 'get'
     })
 }
+
+export const addCategory = (category) => {
+    return axios({
+        url: `/category`,
+        method: `post`,
+        data: category,
+    })
+}
+
+export const updateCategory = (category) => {
+    return axios({
+        url: `/category`,
+        method: `put`,
+        data: category,
+    })
+}
+
+export const removeCategoryById = (cid) => {
+    return axios({
+        url: `/category/${cid}`,
+        method: `delete`,
+    })
+}
