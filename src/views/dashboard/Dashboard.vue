@@ -11,10 +11,11 @@
     <div class="menus" >
 
       <!--     后台banner-->
-        <n-image
-            width="100"
-            src="https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
-        />
+      <RouterLink to="/">
+        <svg class="icon">
+          <use xlink:href="#icon-home"></use>
+        </svg>
+      </RouterLink>
 
       <!--      侧边栏菜单-->
       <div v-for="(menu, index) in menus" @click="toPage(menu)">
@@ -34,7 +35,7 @@
 
 <script setup>
 import {ref, reactive, inject, onMounted, computed} from 'vue'
-import {useRouter, useRoute} from 'vue-router'
+import {useRouter, useRoute, RouterLink} from 'vue-router'
 import cookie from 'js-cookie'
 
 const router = useRouter()
@@ -85,6 +86,7 @@ const toPage = (menu) => {
 
 //侧边菜单
 .menus {
+  padding-top: 20px;
   border-radius: 10px;
   line-height: 55px;
   text-align: center;
