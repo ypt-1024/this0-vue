@@ -64,7 +64,7 @@ const articleColumns = () => [
     },
   },
   {title: "文章摘要", key: "introduction"},
-  {title: "发布时间", key: "updateTime"},
+  {title: "发布时间", key: "createTime"},
   {
     title: "Action",
     key: "actions",
